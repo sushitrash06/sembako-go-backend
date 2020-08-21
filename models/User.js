@@ -14,11 +14,17 @@ module.exports = db.sequelize.define(
         Nama_toko:{
             type: Sequelize.STRING 
         },
-        Email:{
+        Username:{
             type: Sequelize.STRING 
         },
         Password:{
             type: Sequelize.STRING 
+        },
+        Alamat:{
+            type: Sequelize.STRING
+        },
+        Roles:{
+            type: Sequelize.STRING
         },
         created:{
             type: Sequelize.DATE,

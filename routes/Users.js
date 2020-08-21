@@ -14,14 +14,15 @@ users.post('/register',(req,res)=>{
     const today = new Date()
     const userData = {
         Nama: req.body.Nama,
-        Nama_toko:req.body.Nama_toko,
-        Email: req.body.Email,
+        Nama_toko: req.body.Nama_toko,
+        Username: req.body.Username,
         Password: req.body.Password,
+        Roles: req.body.Roles,
         create:today
     }
     User.findOne({
         where:{
-            Email: req.body.Email
+            Username: req.body.Username
         }
     })
     .then(user =>{
@@ -30,7 +31,7 @@ users.post('/register',(req,res)=>{
                 userData.Password= hash
                 User.create(userData)
                 .then(user =>{
-                    res.json({status: user.Email + 'registered'})
+                    res.json({status: user.Username + 'registered'})
                 })
                 .catch(err =>{
                     res.send('error: '+err)
@@ -40,7 +41,7 @@ users.post('/register',(req,res)=>{
             res.json({error: "User Alredy Exits"})
         }
 
-    })
+    }) 
     .catch(err =>{
         res.send('error: ' + err)
     })
@@ -48,7 +49,7 @@ users.post('/register',(req,res)=>{
 users.post('/login',(req,res)=>{
     User.findOne({
         where: {
-            Email: req.body.Email
+            Username: req.body.Username
         }
     })
     .then(user => {
