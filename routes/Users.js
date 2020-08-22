@@ -12,11 +12,13 @@ process.env.SECRET_KEY = 'secret'
 
 users.post('/register',(req,res)=>{
     const today = new Date()
+    console.log(req.body)
     const userData = {
         Nama: req.body.Nama,
         Nama_toko: req.body.Nama_toko,
         Username: req.body.Username,
         Password: req.body.Password,
+        Alamat: req.body.Alamat,
         Roles: req.body.Roles,
         create:today
     }
@@ -45,6 +47,7 @@ users.post('/register',(req,res)=>{
     .catch(err =>{
         res.send('error: ' + err)
     })
+    console.log(req.body)
 })
 users.post('/login',(req,res)=>{
     User.findOne({
