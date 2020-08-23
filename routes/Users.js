@@ -6,6 +6,12 @@ const bcrypt = require('bcrypt')
 
 const User = require('../models/User')
 
+User.sync().then(() => {
+    console.log('Berhasil melakukan sync dengan model User.');
+}).catch(err => {
+    console.log('Gagal melakukan sync dengan model User', err);
+});
+
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -33,7 +39,16 @@ users.post('/register',(req,res)=>{
                 userData.Password= hash
                 User.create(userData)
                 .then(user =>{
-                    res.json({status: user.Username + 'registered'})
+                    res.json({
+                        status: user.Username + 'registered',
+                        token: jwt.sign({
+                            // Masukkan data apapun ke sini untuk disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
+                            id_user: user.id_user,
+                            Nama_toko: user.Nama_toko,
+                            username: user.Username,
+                            roles: user.roles
+                        }, process.env.SECRET_KEY)
+                    });
                 })
                 .catch(err =>{
                     res.send('error: '+err)
@@ -58,7 +73,13 @@ users.post('/login',(req,res)=>{
     .then(user => {
         if(user){
             if(bcrypt.compareSync(req.body.Password, user.Password)){
-                let token = jwt.sign(user.dataValues, process.env.SECRET_KEY,{
+                let token = jwt.sign({
+                    // Masukkan data apapun ke sini untuk disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
+                    id_user: user.id_user,
+                    Nama_toko: user.Nama_toko,
+                    username: user.Username,
+                    roles: user.roles
+                }, process.env.SECRET_KEY,{
                     expiresIn: 1440
                 })
                 res.send(token)
@@ -67,7 +88,7 @@ users.post('/login',(req,res)=>{
     }
     }else{
             res.status(400).json({error: "User doesnt not exist"})
-         }
+        }
     })
     .catch(err =>{
         res.status(400).json({error: "Error salah"})
