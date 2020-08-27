@@ -83,7 +83,7 @@ users.post('/login',(req,res)=>{
                 }, process.env.SECRET_KEY,{
                     expiresIn: 1440
                 })
-                res.send(token)
+                res.send({token})
     }else{
         res.status(401).json({error: "incorrect Password"})
     }
