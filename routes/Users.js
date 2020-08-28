@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt')
 
 const User = require('../models/User')
 
-
-User.sync().then(()=>{
-    console.log('Berhasil melakukan sync dengan model User');
-
+User.sync().then(() => {
+    console.log('Berhasil melakukan sync dengan model User.');
 }).catch(err => {
     console.log('Gagal melakukan sync dengan model User', err);
 });
@@ -42,13 +40,14 @@ users.post('/register',(req,res)=>{
                 User.create(userData)
                 .then(user =>{
                     res.json({
-                        status: user.Username+'registed',
+                        status: user.Username + 'registered',
                         token: jwt.sign({
+                            // Masukkan data apapun ke sini untuk disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
                             id_user: user.id_user,
                             Nama_toko: user.Nama_toko,
-                            Username: user.Username,
-                            Roles: user.Roles
-                        },process.env.SECRET_KEY)
+                            username: user.Username,
+                            roles: user.roles
+                        }, process.env.SECRET_KEY)
                     });
                 })
                 .catch(err =>{
@@ -83,13 +82,13 @@ users.post('/login',(req,res)=>{
                 }, process.env.SECRET_KEY,{
                     expiresIn: 1440
                 })
-                res.send({token})
+                res.send(token)
     }else{
         res.status(401).json({error: "incorrect Password"})
     }
     }else{
             res.status(400).json({error: "User doesnt not exist"})
-         }
+        }
     })
     .catch(err =>{
         res.status(400).json({error: "Error salah"})
