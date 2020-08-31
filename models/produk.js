@@ -23,7 +23,6 @@ module.exports = db.sequelize.define(
         Price:{
             type: Sequelize.INTEGER
         }
-
     },
     {
         timestamps: false

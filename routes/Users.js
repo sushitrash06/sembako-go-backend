@@ -57,7 +57,6 @@ users.post('/register',(req,res)=>{
         }else{
             res.json({error: "User Alredy Exits"})
         }
-
     }) 
     .catch(err =>{
         res.send('error: ' + err)
@@ -93,5 +92,40 @@ users.post('/login',(req,res)=>{
     .catch(err =>{
         res.status(400).json({error: "Error salah"})
     })
+})
+users.post('editprofile',(req,res)=>{
+    User.findOne({
+        where: {
+            Username: req.body.Username,
+        }
+    })
+    .then(user=>{
+        if(user){
+            bcrypt.hash(req.body.Password,10,(err,hash)=>{
+                userData.Password= hash
+                User.update(userData)
+                .then(user =>{
+                    res.json({
+                        status: user.Username + 'registered',
+                        token: jwt.sign({ 
+                            id_user: user.id_user,
+                            Nama_toko: user.Nama_toko,
+                            username: user.Username,
+                            roles: user.roles
+                            },process.env.SECRET_KEY)
+                    });     
+                });   
+            })
+            .catch(err =>{
+                res.send('error: '+err)
+            });
+        }else{
+            res.json({error: "User Alredy Exits"})
+        }
+    })
+    .catch(err =>{
+        res.send('error: ' + err)
+    })
+    console.log(req.body)
 })
 module.exports =  users

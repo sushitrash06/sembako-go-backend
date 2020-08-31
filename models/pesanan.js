@@ -8,9 +8,12 @@ module.exports = db.sequelize.define(
             primaryKey: true,
             autoIncrement: true
         },
+        id_penjual:{
+            type: Sequelize.INTEGER,
+        },
         Tgl_order:{
             type: Sequelize.DATE,
-            defaultValue: sequelize.NOW 
+            defaultValue: Sequelize.NOW 
         },
         id_user:{
             type: Sequelize.INTEGER
@@ -29,6 +32,9 @@ module.exports = db.sequelize.define(
         },
         Catatan:{
             type: Sequelize.STRING
+        },
+        Status:{
+            type:Sequelize.STRING
         }
 
     },
