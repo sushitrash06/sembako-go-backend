@@ -28,11 +28,7 @@ users.post('/register',(req,res)=>{
         Roles: req.body.Roles,
         create:today
     }
-    User.findOne({
-        where:{
-            Username: req.body.Username
-        }
-    })
+    
     .then(user =>{
         if(!user){
             bcrypt.hash(req.body.Password,10,(err,hash)=>{

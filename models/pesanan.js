@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize")
 const db = require("../database/db")
 module.exports = db.sequelize.define(
-    'pesanan',
+    'pesanans',
     {
         id_pesanan: {
             type: Sequelize.INTEGER,
@@ -10,6 +10,7 @@ module.exports = db.sequelize.define(
         },
         id_penjual:{
             type: Sequelize.INTEGER,
+            unique: true
         },
         Tgl_order:{
             type: Sequelize.DATE,
@@ -22,7 +23,7 @@ module.exports = db.sequelize.define(
             type: Sequelize.STRING
         },
         Total_bayar:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER 
         },
         Quantity:{
             type: Sequelize.INTEGER
@@ -36,7 +37,6 @@ module.exports = db.sequelize.define(
         Status:{
             type:Sequelize.STRING
         }
-
     },
     {
         timestamps: false

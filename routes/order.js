@@ -10,9 +10,10 @@ pesanan.sync().then(()=>{
     console.log("Gagal melakukan sync dengan model pesana",err);
 });
 
+//pesanan.use(cors())
+
 pesan.post('/pesanan',(req,res)=>{
-    
-    const token = localStorage.getItem('usertoken')
+
     const today = new Date()
     console.log(req.body)
     const decoded = jwt_decode(token);
@@ -21,7 +22,8 @@ pesan.post('/pesanan',(req,res)=>{
         id_penjual: req.body.id_penjual,
         Tgl_order: today,
         id_user: decoded.id_user,
-        Nama_toko: decoded.Nama_toko,
+        Nama_pembeli:req.body.Nama_pembeli,
+        Nama_toko: req.body.Nama_toko,
         Total_bayar: req.body.Total_bayar,
         Quantity: req.body,Quantity,
         Alamat_kirim: req.body.Alamat_kirim,
@@ -33,7 +35,7 @@ pesan.post('/pesanan',(req,res)=>{
             pesanan.create(pesananData)
             .then(pesanan =>{
                 res.json({
-                    status: pesanan.id_penjual + ' Data pesanan masuk'
+                    status: pesanan.id_pesanan + ' Data pesanan masuk'
                 })
             })
             .catch(err =>{
@@ -48,3 +50,4 @@ pesan.post('/pesanan',(req,res)=>{
     })
     console.log(req.body)
 })
+module.exports = pesan
