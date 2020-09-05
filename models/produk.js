@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize")
 const db = require("../database/db")
 module.exports = db.sequelize.define(
-    'produks',{
+    'produks',
+    {
         id_produk:{
             type: Sequelize.INTEGER,
             primaryKey: true,

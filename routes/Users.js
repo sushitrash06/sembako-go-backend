@@ -28,7 +28,11 @@ users.post('/register',(req,res)=>{
         Roles: req.body.Roles,
         create:today
     }
-    
+    User.findOne({
+        where: {
+          Username: req.body.Username
+        }
+    })
     .then(user =>{
         if(!user){
             bcrypt.hash(req.body.Password,10,(err,hash)=>{
@@ -89,7 +93,7 @@ users.post('/login',(req,res)=>{
         res.status(400).json({error: "Error salah"})
     })
 })
-users.post('editprofile',(req,res)=>{
+users.put('/editprofile',(req,res)=>{
     User.findOne({
         where: {
             Username: req.body.Username,

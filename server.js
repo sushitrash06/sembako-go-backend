@@ -13,7 +13,7 @@ app.use('/Users', Users)
 var pesan =require('./routes/order')
 app.use('/pesanan',pesan)
 var produk =require('./routes/product')
-app.use('/produk',produk)
+app.use('/product',produk)
 app.listen(port,()=>{
     console.log("Server is running at : " + port)
 })
