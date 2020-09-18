@@ -46,7 +46,7 @@ users.post('/register',(req,res)=>{
                             id_user: user.id_user,
                             Nama_toko: user.Nama_toko,
                             username: user.Username,
-                            roles: user.roles
+                            Roles: user.Roles
                         }, process.env.SECRET_KEY)
                     });
                 })
@@ -72,8 +72,12 @@ users.post('/login',(req,res)=>{
     .then(user => {
         if(user){
             if(bcrypt.compareSync(req.body.Password, user.Password)){
+                //const authorization = req.headers.authorization || '';
+                
+                //const data = jwt.decode(token);
+
                 let token = jwt.sign({
-                    // Masukkan data apapun ke sini untuk disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
+                    // Masukkan data apapun ke sini untu k disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
                     id_user: user.id_user,
                     Nama_toko: user.Nama_toko,
                     Username: user.Username,
@@ -90,6 +94,7 @@ users.post('/login',(req,res)=>{
         }
     })
     .catch(err =>{
+        console.error(err);
         res.status(400).json({error: "Error salah"})
     })
 })
@@ -112,7 +117,7 @@ users.put('/editprofile',(req,res)=>{
                             Nama_toko: user.Nama_toko,
                             username: user.Username,
                             roles: user.roles
-                            },process.env.SECRET_KEY)
+                            },process.env.SECRET_KEY) 
                     });     
                 });   
             })

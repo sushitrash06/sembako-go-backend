@@ -8,16 +8,18 @@ module.exports = db.sequelize.define(
             primaryKey: true,
             autoIncrement: true
         },
-        id_penjual:{
-            type: Sequelize.INTEGER,
-            unique: true
-        },
         Tgl_order:{
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW 
         },
+        Nama_pembeli: {
+            type: Sequelize.STRING,
+        },
         id_user:{
             type: Sequelize.INTEGER
+        },
+        pesanan:{
+            type: Sequelize.STRING
         },
         Nama_toko:{
             type: Sequelize.STRING
@@ -25,11 +27,14 @@ module.exports = db.sequelize.define(
         Total_bayar:{
             type: Sequelize.INTEGER 
         },
-        Quantity:{
+        jumlah_pesanan:{
             type: Sequelize.INTEGER
         },
         Alamat_kirim:{
             type: Sequelize.STRING
+        },
+        Nomer_hp:{
+            type: Sequelize.INTEGER
         },
         Catatan:{
             type: Sequelize.STRING

@@ -24,7 +24,6 @@ function executeAsync(sql) {
         });
     });
 }
-
 const db = {}
 const sequelize = new Sequelize("skripsi-sembako-go", "root","", {
     host: 'localhost',
