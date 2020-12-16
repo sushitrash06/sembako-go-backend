@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const uploadfile = multer({storage: storage, dest:uploadDir})
 module.exports= uploadfile;
 module.exports = db.sequelize.define(
-    'user',
+    'users',
     {
         id_user: {
             type: Sequelize.INTEGER,

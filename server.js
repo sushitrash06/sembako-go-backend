@@ -2,7 +2,9 @@ var express = require("express")
 var cors = require("cors")
 var bodyParser = require("body-parser")
 var app = express()
-var port = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000
+
+
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -19,6 +21,6 @@ var cart = require('./routes/cart')
 app.use('/keranjang',cart)
 var admin = require('./routes/admins')
 app.use('/admin',admin)
-app.listen(port,()=>{
-    console.log("Server is running at : " + port)
+app.listen(PORT,()=>{
+    console.log(`Server is running at :  ${PORT}`)
 })
