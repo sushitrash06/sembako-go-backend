@@ -6,7 +6,7 @@ const express = require("express")
 const app = express();
 const path = require('path');
 const crypto = require('crypto');
-app.use(express.static('public/img'));
+app.use(express.static('http:/localhost:4000/public/img'));
 
 
 const uploadDir = '/img/';
@@ -32,7 +32,10 @@ module.exports = db.sequelize.define(
             autoIncrement: true
         },
         id_user: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER  
+        },
+        Username:{
+            type: Sequelize.STRING
         },
         Nama_toko:{
             type: Sequelize.STRING
@@ -54,6 +57,9 @@ module.exports = db.sequelize.define(
             type: Sequelize.INTEGER
         }, 
         Jumlah_stock:{
+            type:Sequelize.INTEGER
+        },
+        StatusBarang:{
             type:Sequelize.INTEGER
         }
     },

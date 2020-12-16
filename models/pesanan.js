@@ -12,16 +12,22 @@ module.exports = db.sequelize.define(
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW 
         },
-        Nama_pembeli: {
+        Nama_pengguna: {
             type: Sequelize.STRING,
         },
         id_user:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+        },
+        Username:{
+            type: Sequelize.STRING,
         },
         pesanan:{
             type: Sequelize.STRING
         },
         Nama_toko:{
+            type: Sequelize.STRING
+        },
+        Price:{
             type: Sequelize.STRING
         },
         Total_bayar:{
