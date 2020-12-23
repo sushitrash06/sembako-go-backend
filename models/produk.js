@@ -6,7 +6,7 @@ const express = require("express")
 const app = express();
 const path = require('path');
 const crypto = require('crypto');
-app.use(express.static('http:/localhost:4000/public/img'));
+app.use(express.static('http:/140.238.205.80/public/img'));
 
 
 const uploadDir = '/img/';

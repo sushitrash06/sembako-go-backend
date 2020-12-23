@@ -63,8 +63,6 @@ admins.post('/login',(req,res)=>{
     .then(admin => {
         if(admin){
             if(bcrypt.compareSync(req.body.Password, admin.Password)){
-                //const authorization = req.headers.authorization || ''; 
-                //const data = jwt.decode(token);
                 let token = jwt.sign({ 
                     Username: admin.Username,
                 }, process.env.SECRET_KEY,{

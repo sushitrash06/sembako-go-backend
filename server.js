@@ -4,11 +4,6 @@ var bodyParser = require("body-parser")
 var app = express()
 var port = process.env.PORT || 4000
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
-
 app.use(bodyParser.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))

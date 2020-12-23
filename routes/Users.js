@@ -89,8 +89,6 @@ users.post('/login',(req,res)=>{
     .then(user => {
         if(user){
             if(bcrypt.compareSync(req.body.Password, user.Password)){
-                //const authorization = req.headers.authorization || ''; 
-                //const data = jwt.decode(token);
                 let token = jwt.sign({
                     // Masukkan data apapun ke sini untu k disimpan ke token, tapi jangan simpan data yang sifatnya rahasia.
                     Nama_pengguna:user.Nama_pengguna,

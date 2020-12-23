@@ -68,7 +68,7 @@ pesan.get('/penjual/:Username',(req,res)=>{
 })
 pesan.get('/pembeli/:id_user',(req,res)=>{
     pesanan.findAll({
-        id_user:{
+        where:{
             id_user:req.params.id_user,
         }
     }).then(pesanan=>{
